@@ -250,15 +250,20 @@ p {
         font-size: 1.2rem;
     }
     .social-links {
-        top: auto;
-        bottom: 2rem;
+        top: 2rem;
+        bottom: auto;
         left: 50%;
         transform: translateX(-50%);
         right: auto;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         padding: 10px 20px;
         border-radius: 30px;
         border: 1px solid #fce81f;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+        z-index: 9999;
     }
     .social-links a {
         width: 24px;
