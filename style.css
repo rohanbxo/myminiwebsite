@@ -204,49 +204,50 @@ p {
 
 @media only screen and (max-width: 768px) {
     .wrapper3d { 
-        perspective: 80vw; 
+        perspective: 150vw; /* Less extreme perspective on mobile to prevent 3D overflow */
     }
     .fold {
-        width: 100vw;
-        height: 70vh;
+        width: 100%; /* Avoid 100vw to prevent horizontal scrollbars */
+        height: 75vh;
     }
     .foldTop {
-        transform: rotateX(-90deg); /* keep seamless at 90 */
+        transform: rotateX(-90deg);
     }
     .foldBottom {
-        transform: rotateX(90deg); /* keep seamless at 90 */
+        transform: rotateX(90deg);
     }
     .inner-content {
-        padding: 1rem 1.5rem;
+        padding: 5% 5%;
         font-size: 1rem;
         width: 100%;
-        max-width: 100vw;
         box-sizing: border-box;
-        text-align: left;
+        text-align: center; /* Centering helps prevent edge cutoffs */
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
     }
     .title h1 { 
-        font-size: 2rem; 
+        font-size: 2.2rem; 
         margin-bottom: 1rem;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         word-break: break-word;
     }
     .title p { 
-        font-size: 1rem; 
+        font-size: 1.1rem; 
     }
     .section-heading {
         font-size: 1.5rem;
+        margin-top: 1.5rem;
         margin-bottom: 0.8rem;
     }
     .section-text {
         font-size: 1rem;
         margin-bottom: 1.5rem;
+        line-height: 1.4;
     }
     .cv-button {
         padding: 10px 20px;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .social-links {
         top: auto;
@@ -264,8 +265,8 @@ p {
         height: 24px;
     }
     #toast {
-        bottom: 6rem; /* Move up to not overlap with social links that are moved to the bottom */
-        font-size: 1.2rem;
+        bottom: 6rem;
+        font-size: 1rem;
         padding: 0.8rem 1.5rem;
         width: 90%;
         text-align: center;
