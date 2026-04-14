@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Pathway+Gothic+One&display=swap');
+
+/* Default Resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background: #000 url('https://www.transparenttextures.com/patterns/stardust.png') repeat top left;
+    color: #fce81f; /* Classic yellow */
+    font-family: 'Pathway Gothic One', 'Helvetica', sans-serif;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+}
+
+/* Loading Screen */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.jet {
+    width: 80px;
+    height: 80px;
+    transform: translateY(100vh); /* Start off-screen at bottom */
+    animation: flyUp 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh); /* Fly off-screen at top */
+        opacity: 1;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Base Wrapper for 3D */
+.all {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.wrapper3d {
+    position: relative;
+    /* Determines the intensity of the perspective */
+    perspective: 20vw;
+    transform-style: preserve-3d;
+}
+
+/* Individual Fold (top, middle, bottom) */
+.fold {
+    overflow: hidden;
+    width: 80vw;
+    height: 80vh;  /* Height of the viewable panel per fold */
+    /* Background is entirely transparent so the stars show through cleanly! */
+    background-color: transparent;
+}
+
+/* Align contents correctly inside */
+.foldAlign {
+    width: 100%;
+    height: 100%;
+}
+
+.fold-content {
+    /* Triggers GPU acceleration for hyper smooth scrolls */
+    will-change: transform;
+    width: 100%;
+}
+
+/* Top Fold specifics */
+.foldBefore {
+    position: absolute;
+    transform-origin: bottom center;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+}
+.foldTop {
+    transform-origin: bottom center;
+    transform: rotateX(-90deg); 
+}
+.foldTop .foldAlign {
+    transform: translateY(100%);
+}
+
+/* Bottom Fold Specifics */
+.foldAfter {
+    position: absolute;
+    transform-origin: top center;
+    right: 0;
+    left: 0;
+    top: 100%;
+}
+.foldBottom {
+    transform-origin: top center;
+    transform: rotateX(90deg); 
+}
+.foldBottom .foldAlign {
+    transform: translateY(-100%);
+}
+
+/* Custom styling for the actual text content */
+.inner-content {
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-align: justify;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.title p {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.title h1 {
+    font-size: 5rem;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 3rem;
+}
+
+.section-heading {
+    color: #fce81f;
+    border-bottom: 2px solid #fce81f;
+    padding-bottom: 5px;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.section-text {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.cv-button {
+    color: #fce81f;
+    text-decoration: none;
+    border: 3px solid #fce81f;
+    padding: 15px 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cv-button:hover {
+    background-color: #fce81f;
+    color: #000;
+}
+
+@media only screen and (max-width: 768px) {
+    .wrapper3d { 
+        perspective: 80vw; 
+    }
+    .fold {
+        width: 100vw;
+        height: 70vh;
+    }
+    .foldTop {
+        transform: rotateX(-90deg); /* keep seamless at 90 */
+    }
+    .foldBottom {
+        transform: rotateX(90deg); /* keep seamless at 90 */
+    }
+    .inner-content {
+        padding: 1rem 1.5rem;
+        font-size: 1.2rem;
+        max-width: 100%;
+        text-align: left;
+    }
+    .title h1 { 
+        font-size: 2.8rem; 
+        margin-bottom: 1.5rem;
+    }
+    .title p { 
+        font-size: 1.2rem; 
+    }
+    .section-heading {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    .section-text {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    .cv-button {
+        padding: 10px 20px;
+        font-size: 1.5rem;
+    }
+    .social-links {
+        top: auto;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 1px solid #fce81f;
+    }
+    .social-links a {
+        width: 24px;
+        height: 24px;
+    }
+    #toast {
+        bottom: 6rem; /* Move up to not overlap with social links that are moved to the bottom */
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+/* Fixed Social Links */
+.social-links {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    z-index: 1000;
+}
+
+.social-links a {
+    color: #fce81f; /* Matches Star Wars yellow */
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Toast Notification */
+#toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fce81f;
+    color: #000;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#toast.hidden {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    pointer-events: none;
+}
